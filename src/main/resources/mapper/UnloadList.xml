@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.group.demo.mapper.UnloadListMapper">
+    <insert id="add" parameterType="com.group.demo.pojo.UnloadList">
+        insert into unload(OwnerID,ShipID,PortID,OwnerName,OwnerPhone,CargoType,UnloadDate,COC,Notes)
+        values (#{OwnerID},#{ShipID},#{PortID},#{OwnerName},#{OwnerPhone},#{CargoType},#{UnloadDate},#{COC},#{Notes})
+    </insert>
+
+    <select id="queryByUnloadListID" resultType="com.group.demo.pojo.UnloadList">
+        select * from unload where UnloadListID = #{id}
+    </select>
+
+    <select id="queryByOwnerID" resultType="com.group.demo.pojo.UnloadList">
+        select * from unload where OwnerID = #{id}
+    </select>
+
+    <select id="ownerQueryByKey" resultType="com.group.demo.pojo.UnloadList">
+        select * from unload where OwnerID = #{id} and concat(UnloadListID,ShipID,PortID,OwnerName,OwnerPhone,
+            CargoType,UnloadDate,COC,Notes) like concat('%',#{key},'%')
+    </select>
+
+    <select id="queryAll" resultType="com.group.demo.pojo.UnloadList">
+        select * from unload
+    </select>
+
+    <select id="queryByKey" resultType="com.group.demo.pojo.UnloadList">
+        select * from unload where  concat(UnloadListID,OwnerID,ShipID,PortID,OwnerName,OwnerPhone,
+            CargoType,UnloadDate,COC,Notes) like concat('%',#{key},'%')
+    </select>
+
+    <update id="update" parameterType="com.group.demo.pojo.UnloadList">
+        update unload set ShipID = #{ShipID},PortID = #{PortID},OwnerName = #{OwnerName},OwnerPhone = #{OwnerPhone},
+                          CargoType = #{CargoType},UnloadDate = #{UnloadDate},COC = #{COC},Notes = #{Notes}
+        where UnloadListID = #{UnloadListID}
+    </update>
+
+    <delete id="delete" parameterType="com.group.demo.pojo.UnloadList">
+        delete from unload where UnloadListID = #{UnloadListID}
+    </delete>
+    <select id="getbypages" resultType="com.group.demo.pojo.UnloadList">
+        select *  from unload
+    </select>
+</mapper>

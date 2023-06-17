@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.group.demo.mapper.DelegationMapper">
+    <select id="queryAll" resultType="com.group.demo.pojo.Delegation">
+        select * from delegation
+    </select>
+
+    <insert id="add" parameterType="com.group.demo.pojo.Delegation" >
+        insert into delegation(DelegationDate,DelegationContent,EnterDate,EnterLocation,Carrier,CarrierPhone,
+        AppointDate,AppointDuring,Examine,Handle,Notes)
+        values (#{DelegationDate}, #{DelegationContent},#{EnterDate},#{EnterLocation}
+        ,#{Carrier},#{CarrierPhone},#{AppointDate},#{AppointDuring},#{Examine},#{Handle},#{Notes})
+    </insert>
+
+    <select id="queryByID" resultType="com.group.demo.pojo.Delegation">
+        select * from delegation where DelegationID=#{DelegationID}
+    </select>
+
+    <update id="update" parameterType="com.group.demo.pojo.Delegation">
+        update delegation set DelegationDate = #{DelegationDate},DelegationContent = #{DelegationContent},EnterDate = #{EnterDate},EnterLocation = #{EnterLocation},
+                          Carrier = #{Carrier},CarrierPhone = #{CarrierPhone},AppointDate = #{AppointDate},AppointDuring = #{AppointDuring},
+                          Examine = #{Examine},Handle = #{Handle},Notes = #{Notes}
+        where DelegationID = #{DelegationID}
+    </update>
+
+    <select id="delete" resultType="com.group.demo.pojo.Delegation">
+        delete from delegation where DelegationID=#{DelegationID}
+    </select>
+
+</mapper>

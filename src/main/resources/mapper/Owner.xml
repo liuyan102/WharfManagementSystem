@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.group.demo.mapper.OwnerMapper">
+    <insert id="add" parameterType="com.group.demo.pojo.Owner">
+        insert into owner(OwnerName,Username,Password,OwnerPhone,OwnerMail)
+        values (#{OwnerName},#{Username},#{Password},#{OwnerPhone},#{OwnerMail})
+    </insert>
+
+    <select id="queryByUsername" resultType="com.group.demo.pojo.Owner">
+        select * from owner where Username = #{username}
+    </select>
+
+    <select id="queryByID" resultType="com.group.demo.pojo.Owner">
+        select * from owner where OwnerID = #{id}
+    </select>
+
+    <select id="queryAll" resultType="com.group.demo.pojo.Owner">
+        select * from owner
+    </select>
+
+    <update id="updateOwner" parameterType="com.group.demo.pojo.Owner">
+        update owner set OwnerName = #{OwnerName},OwnerPhone = #{OwnerPhone},OwnerMail = #{OwnerMail}
+        where OwnerID = #{OwnerID}
+    </update>
+
+    <update id="updatePassword" parameterType="com.group.demo.pojo.Owner">
+        update owner set Password = #{Password} where OwnerID = #{OwnerID}
+    </update>
+    
+    <delete id="deleteOwner" parameterType="com.group.demo.pojo.Owner">
+        delete from owner where OwnerID = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.group.demo.mapper.ShipRegistryMapper">
+    <select id="queryAll" resultType="com.group.demo.pojo.ShipRegistry">
+        select * from shipreg
+    </select>
+
+    <insert id="add" parameterType="com.group.demo.pojo.ShipRegistry" >
+        insert into shipreg(RegistrationDate,ShipID, PortID,TCNum,TCValidity,ShipType,CargoWeight,
+        PrincipalName,PrincipalPhone,AdminName,AdminPhone,Notes)
+        values (#{ RegistrationDate}, #{ShipID},#{PortID},#{TCNum},#{TCValidity},#{ShipType}, #{CargoWeight},
+        #{PrincipalName},#{PrincipalPhone},#{AdminName},#{AdminPhone},#{Notes})
+    </insert>
+
+    <select id="queryById" resultType="com.group.demo.pojo.ShipRegistry">
+        select * from shipreg where ShipRegistrationID=#{ShipRegistrationID}
+    </select>
+    <select id="queryByKey" resultType="com.group.demo.pojo.ShipRegistry">
+        select * from shipreg where  concat(ShipRegistrationID,RegistrationDate,ShipID, PortID,TCNum,TCValidity,ShipType,CargoWeight,
+        PrincipalName,PrincipalPhone,AdminName,AdminPhone,Notes) like concat('%',#{key},'%')
+    </select>
+    <update id="update" parameterType="com.group.demo.pojo.ShipRegistry">
+        update shipreg set RegistrationDate = #{RegistrationDate},ShipID = #{ShipID},PortID = #{PortID},TCNum = #{TCNum},
+                          TCValidity = #{TCValidity},ShipType = #{ShipType},CargoWeight = #{CargoWeight},PrincipalName = #{PrincipalName},
+                          PrincipalPhone = #{PrincipalPhone},AdminName = #{AdminName},AdminPhone = #{AdminPhone},Notes = #{Notes}
+        where ShipRegistrationID = #{ShipRegistrationID}
+    </update>
+
+    <select id="delete" resultType="com.group.demo.pojo.ShipRegistry">
+        delete from shipreg where ShipRegistrationID=#{ShipRegistrationID}
+    </select>
+    <select id="getbypages" resultType="com.group.demo.pojo.ShipRegistry">
+        select *  from shipreg
+    </select>
+</mapper>

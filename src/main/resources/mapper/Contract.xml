@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.group.demo.mapper.ContractMapper">
+    <select id="queryAll" resultType="com.group.demo.pojo.Contract">
+        select * from contract
+    </select>
+
+    <insert id="add" parameterType="com.group.demo.pojo.Contract" >
+       insert into contract(ProjectName,PartA,RepresentA,PhoneA,AddressA,PartB,RepresentB, PhoneB,
+       AddressB,Law,ContractContent,SignDate,BeginDate,EndDate,Notes)
+        values (#{ProjectName}, #{PartA},#{RepresentA},#{PhoneA},#{AddressA},#{PartB},
+        #{RepresentB},#{PhoneB},#{AddressB},#{Law},#{ContractContent},#{SignDate},#{BeginDate},#{EndDate},#{Notes})
+    </insert>
+
+    <select id="queryById" resultType="com.group.demo.pojo.Contract">
+        select * from contract where ContractID=#{ContractID}
+    </select>
+
+    <select id="queryByKey" resultType="com.group.demo.pojo.Contract">
+        select * from contract where  concat(ContractID,ProjectName,PartA,RepresentA,PhoneA,AddressA,PartB,RepresentB, PhoneB,
+       AddressB,Law,ContractContent,SignDate,BeginDate,EndDate,Notes) like concat('%',#{key},'%')
+    </select>
+    <update id="update" parameterType="com.group.demo.pojo.Contract">
+        update contract set ProjectName = #{ProjectName},PartA = #{PartA},RepresentA = #{RepresentA},PhoneA = #{PhoneA},
+                          AddressA = #{AddressA},PartB = #{PartB},RepresentB = #{RepresentB},PhoneB = #{PhoneB},AddressB = #{AddressB},
+                          Law = #{Law},ContractContent = #{ContractContent},SignDate = #{SignDate},BeginDate = #{BeginDate},EndDate = #{EndDate},Notes = #{Notes}
+        where ContractID = #{ContractID}
+    </update>
+
+    <select id="delete" resultType="com.group.demo.pojo.Contract">
+        delete from contract where ContractID=#{ContractID}
+    </select>
+    <select id="getbypages" resultType="com.group.demo.pojo.Contract">
+        select *  from contract
+    </select>
+</mapper>

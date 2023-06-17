@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.group.demo.mapper.ShipMapper">
+    <insert id="add" parameterType="com.group.demo.pojo.Ship">
+        insert into ship(PortID,PrincipalName,PrincipalPhone,CargoType,EnterDate,UnloadDate,COC,Status,Notes)
+        values (#{PortID},#{PrincipalName},#{PrincipalPhone},#{CargoType},#{EnterDate},#{UnloadDate},#{COC},#{Status},#{Notes})
+    </insert>
+
+    <select id="queryByID" resultType="com.group.demo.pojo.Ship">
+        select * from ship where ShipID = #{id}
+    </select>
+
+    <select id="queryAll" resultType="com.group.demo.pojo.Ship">
+        select * from ship
+    </select>
+
+    <select id="queryByKey" resultType="com.group.demo.pojo.Ship">
+        select * from ship where  concat(ShipID,PortID,PrincipalName,PrincipalPhone,CargoType,EnterDate,UnloadDate,
+            COC,Status,Notes) like concat('%',#{key},'%')
+    </select>
+
+    <update id="update" parameterType="com.group.demo.pojo.Ship">
+        update ship set PortID = #{PortID},PrincipalName = #{PrincipalName},PrincipalPhone = #{PrincipalPhone},
+                          CargoType = #{CargoType},EnterDate = #{EnterDate},UnloadDate = #{UnloadDate},
+                        COC = #{COC}, Status = #{Status},Notes = #{Notes}
+        where ShipID = #{ShipID}
+    </update>
+
+    <delete id="delete" parameterType="com.group.demo.pojo.Ship">
+        delete from ship where ShipID = #{id}
+    </delete>
+    <select id="getbypages" resultType="com.group.demo.pojo.Ship">
+        select *  from ship
+    </select>
+</mapper>

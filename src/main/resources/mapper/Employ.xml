@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.group.demo.mapper.EmployMapper">
+    <insert id="add" parameterType="com.group.demo.pojo.Employ">
+        insert into employ(Username,Password,EmployName,EmploySex,EmployAge,
+                           EmployBirth,EmployPhone,EmployMail,EmployPosition)
+        values (#{Username},#{Password},#{EmployName},#{EmploySex},#{EmployAge},
+            #{EmployBirth},#{EmployPhone},#{EmployMail},#{EmployPosition})
+    </insert>
+
+    <select id="queryByUsername" resultType="com.group.demo.pojo.Employ">
+        select * from employ where Username=#{username}
+    </select>
+
+    <select id="queryByID" resultType="com.group.demo.pojo.Employ">
+        select * from employ where EmployID = #{id}
+    </select>
+
+    <select id="queryAll" resultType="com.group.demo.pojo.Employ">
+        select * from employ
+    </select>
+
+    <update id="updateEmploy" parameterType="com.group.demo.pojo.Employ">
+        update employ set EmployName = #{EmployName},EmploySex = #{EmploySex},
+                          EmployAge = #{EmployAge},EmployBirth = #{EmployBirth},
+                          EmployPhone = #{EmployPhone},EmployMail = #{EmployMail},
+                          EmployPosition = #{EmployPosition}
+        where EmployID = #{EmployID}
+    </update>
+
+    <update id="updatePassword" parameterType="com.group.demo.pojo.Employ">
+        update employ set Password = #{Password} where EmployID = #{EmployID}
+    </update>
+
+    <delete id="deleteEmploy" parameterType="com.group.demo.pojo.Employ">
+        delete from employ where EmployID = #{id}
+    </delete>
+
+</mapper>
